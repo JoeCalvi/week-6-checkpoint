@@ -24,7 +24,7 @@ import { useRoute } from 'vue-router';
 
 export default {
   setup() {
-    const route = useRoute()
+    
     async function getAllPosts(){
       try {
         await postsService.getAllPosts()
@@ -38,14 +38,8 @@ export default {
 
     return {
       posts: computed(() => AppState.posts),
-       async getProfileById() {
-            try {
-                const profileId = route.params.profileId
-                await profileService.getProfileById(profileId)
-                } catch (error) {
-                Pop.error('[GETTING PROFILE BY ID]', error)
-                }
-            }
+
+     
     }
   }
 }

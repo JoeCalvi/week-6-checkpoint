@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js"
 import { Profile } from "../models/Account.js"
+import { Post } from "../models/Post.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
@@ -10,6 +11,12 @@ class ProfileService {
         const res = await api.get('api/profiles/' + profileId)
         AppState.profile = new Profile(res.data)
         logger.log('[PROFILE]', AppState.profile)
+    }
+
+    async getPostsByQuery(query) {
+        const res = await api.get('api/posts/', { params: query })
+        AppState.posts = res.data.posts.map(p => new Post(p))
+        logger.log(AppState.posts)
     }
 }
 
