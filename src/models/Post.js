@@ -4,8 +4,8 @@ export class Post {
         this.id = data.id
         this.creator = data.creator
         this.creatorId = data.creatorId
-        this.createdAt = data.createdAt
-        this.updatedAt = data.updatedAt
+        this.createdAt = new Date(data.createdAt).toLocaleTimeString('en-US')
+        this.updatedAt = new Date(data.updatedAt).toLocaleTimeString('en-US')
         this.body = data.body
         this.imgUrl = data.imgUrl
         this.likes = data.likes

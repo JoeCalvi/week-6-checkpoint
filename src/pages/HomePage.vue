@@ -1,10 +1,20 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-10">
-        <p v-for="p in posts">
-          {{ p.body }}
-        </p>
+    <div class="row justify-content-center mt-3">
+      <div class="col-md-8">
+        <div v-for="p in posts" class="row mb-3">
+          <div class="col-md-12">
+            <div class="row align-items-center">
+              <div class="col-md-2">
+                <img :src="p.creator.picture" alt="" class="creator-picture rounded-circle">
+              </div>
+              <div class="col-md-10">
+                <h4>{{ p.creator.name }}</h4>
+                <p>{{ p.updatedAt }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -36,23 +46,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.home {
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
 
-  .home-card {
-    width: 50vw;
-
-    >img {
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
+.creator-picture{
+  height: 6vw;
+  width: 6vw;
+  object-fit: cover;
+  object-position: center;
 }
 </style>
