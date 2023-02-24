@@ -20,9 +20,12 @@
       <ul class="navbar-nav me-auto">
         <li>
           <!-- TODO add home, profile, account -->
-          <!-- <router-link :to="{ name: 'Profile', params: { profileId: } }" class="btn text-success lighten-30 selectable text-uppercase">
-            Profile
-          </router-link> -->
+          <router-link v-if="account" :to="{ name: 'Account'}" class="btn text-success lighten-30 selectable text-uppercase">
+            Account
+          </router-link>
+          <router-link :to="{ name: 'Home'}" class="btn text-success lighten-30 selectable text-uppercase">
+            Home
+          </router-link>
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
@@ -33,14 +36,16 @@
 
 <script>
 import Login from './Login.vue'
+import { AppState } from '../AppState.js';
+import { computed } from 'vue';
+
 export default {
-  // props: {
-  //   profile: { }
-  // },
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account)
+    }
   },
-  components: { Login }
+  components: { Login },
 }
 </script>
 

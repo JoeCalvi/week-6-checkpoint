@@ -31,7 +31,9 @@ export default {
       }
     } 
     
-    onMounted(() => getAllPosts())
+    onMounted(() => {
+      getAllPosts()
+    })
 
     return {
       posts: computed(() => AppState.posts)
