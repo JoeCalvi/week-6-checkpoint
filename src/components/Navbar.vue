@@ -20,9 +20,9 @@
       <ul class="navbar-nav me-auto">
         <li>
           <!-- TODO add home, profile, account -->
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
-          </router-link>
+          <!-- <router-link :to="{ name: 'Profile', params: { profileId: } }" class="btn text-success lighten-30 selectable text-uppercase">
+            Profile
+          </router-link> -->
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
@@ -34,6 +34,9 @@
 <script>
 import Login from './Login.vue'
 export default {
+  // props: {
+  //   profile: { }
+  // },
   setup() {
     return {}
   },

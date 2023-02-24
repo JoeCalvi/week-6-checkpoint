@@ -1,8 +1,10 @@
+import { Profile } from "./Account.js"
+
 
 export class Post {
     constructor(data) {
         this.id = data.id
-        this.creator = data.creator
+        this.creator = new Profile(data.creator)
         this.creatorId = data.creatorId
         this.createdAt = new Date(data.createdAt).toLocaleTimeString('en-US')
         this.updatedAt = new Date(data.updatedAt).toLocaleTimeString('en-US')
