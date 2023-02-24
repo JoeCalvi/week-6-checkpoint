@@ -2,24 +2,21 @@
   <div class="container-fluid">
     <div class="row justify-content-center mt-3">
       <div class="col-md-8">
+        <form> 
+            <div class="mb-3">
+                <label for="newPost" class="form-label">New Post:</label>
+                <textarea class="form-control" id="newPost" rows="3"></textarea>
+            </div>
+            <div class="text-end">
+              <button class="btn btn-outline-info" type="submit">Submit</button>
+            </div>
+        </form>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+      <div class="col-md-8">
         <div v-for="p in posts" class="row mb-3">
           <PostCard :post="p" />
-          <!-- <div class="col-md-12 border border-dark rounded">
-            <div class="row align-items-center my-2">
-              <div class="col-md-2">
-                <img :src="p.creator.picture" alt="" class="creator-picture rounded-circle">
-              </div>
-              <div class="col-md-10">
-                <h5>{{ p.creator.name }}</h5>
-                <p>{{ p.updatedAt }}</p>
-              </div>
-              <div class="row justify-content-center">
-                <div class="col-md-8 border-top border-dark">
-                  <p class="mt-3">{{ p.body }}</p>
-                </div>
-              </div>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
