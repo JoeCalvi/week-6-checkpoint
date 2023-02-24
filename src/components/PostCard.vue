@@ -3,7 +3,9 @@
         <div class="col-md-12 border border-dark rounded">
             <div class="row align-items-center my-2">
                 <div class="col-md-2 ps-4">
-                    <img :src="post.creator.picture" alt="" class="creator-picture rounded-circle">
+                    <router-link :to="{name: 'Profile', params: { profileId: post.creatorId} }">
+                        <img :src="post.creator.picture" alt="" class="creator-picture rounded-circle selectable">
+                    </router-link>
                 </div>
                 <div class="col-md-10">
                     <h5>{{ post.creator.name }}</h5>
@@ -11,6 +13,9 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-8 border-top border-dark">
+                        <div v-if="post.imgUrl">
+                            <img :src="post.imgUrl" class="rounded img-fluid my-2" alt="">
+                        </div>
                         <p class="mt-3">{{ post.body }}</p>
                     </div>
                 </div>
@@ -23,12 +28,13 @@
 <script>
 import { Post } from '../models/Post.js';
 
+
 export default {
     props: {
         post: { type: Post}
     },
     setup(){
-        return {}
+    return {}
     }
 }
 </script>
