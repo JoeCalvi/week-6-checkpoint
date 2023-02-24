@@ -2,7 +2,8 @@
   <div class="container-fluid">
     <div class="row justify-content-center mt-3">
       <div class="col-md-8">
-        <form> 
+        <PostForm />
+        <!-- <form> 
             <div class="mb-3">
                 <label for="newPost" class="form-label">New Post:</label>
                 <textarea class="form-control" id="newPost" rows="3"></textarea>
@@ -10,7 +11,7 @@
             <div class="text-end">
               <button class="btn btn-outline-info" type="submit">Submit</button>
             </div>
-        </form>
+        </form> -->
       </div>
     </div>
     <div class="row justify-content-center mt-3">
