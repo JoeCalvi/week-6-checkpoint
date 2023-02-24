@@ -1,12 +1,26 @@
 <template>
   <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    
+
   </div>
 </template>
 
 <script>
+import { onMounted } from 'vue';
+import { postsService } from '../services/PostsService.js';
+import Pop from '../utils/Pop.js';
+
 export default {
   setup() {
+    async function getAllPosts(){
+      try {
+        await postsService.getAllPosts()
+      } catch (error) {
+        Pop.error('[GETTING ALL POSTS]', error)
+      }
+    } 
+    
+    onMounted(() => getAllPosts())
+
     return {}
   }
 }
