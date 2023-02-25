@@ -8,13 +8,13 @@ import { api } from "./AxiosService.js"
 class ProfileService {
 
     async getProfileById(profileId) {
-        const res = await api.get('api/profiles/' + profileId)
+        const res = await api.get('/api/profiles/' + profileId)
         AppState.profile = new Profile(res.data)
         logger.log('[PROFILE]', AppState.profile)
     }
 
     async getPostsByQuery(query) {
-        const res = await api.get('api/posts/', { params: query })
+        const res = await api.get('/api/posts/', { params: query })
         AppState.posts = res.data.posts.map(p => new Post(p))
         logger.log(AppState.posts)
     }
