@@ -1,8 +1,8 @@
 <template>
     <div class="PostCard">
         <div class="col-md-12 border border-dark rounded">
-            <div class="row align-items-center my-2">
-                <div class="col-md-2 ps-4">
+            <div class="row align-items-center my-2 justify-content-center">
+                <div class="col-md-2 ps-4 text-center">
                     <router-link :to="{name: 'Profile', params: { profileId: post.creatorId} }">
                         <img :src="post.creator.picture" @error="$event.target.src='https://via.placeholder.com/300'" alt="" class="creator-picture rounded-circle selectable">
                     </router-link>
@@ -12,7 +12,7 @@
                     <p>{{ post.updatedAt }}</p>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-md-8 border-top border-dark">
+                    <div class="col-md-8 border-top border-dark text-center">
                         <div v-if="post.imgUrl">
                             <img :src="post.imgUrl" class="rounded img-fluid my-2" alt="">
                         </div>
@@ -48,7 +48,7 @@ export default {
             try {
                 await postsService.likePost(postId)
             } catch (error) {
-                Pop.error('[LIKING POST]', error)
+                throw new Error('Error liking post. Are you logged in?')
             }
         },
 

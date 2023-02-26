@@ -2,6 +2,7 @@ import { AppState } from "../AppState.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 import { Post } from "../models/Post.js"
+import Pop from "../utils/Pop.js"
 
 
 class PostsService {
@@ -42,12 +43,14 @@ class PostsService {
         let post = AppState.posts.find(post => post.id == postId)
         let account = AppState.account
         AppState.likes = post.likeIds.length
-        if (!post.likeIds.includes(account.id)) {
+        if (account.id && !post.likeIds.includes(account.id)) {
             post.likeIds.push(account.id)
             AppState.likes++
-        } else if (post.likeIds.includes(account.id)) {
+        } else if (account.id && post.likeIds.includes(account.id)) {
             post.likeIds.splice(account.id)
             AppState.likes--
+        } else if (!account.id) {
+            Pop.toast('Must be logged in to perform this action.', "warning", "center", 5000, true)
         }
         const res = await api.put('/api/posts/' + postId, post)
         logger.log(res.data)
