@@ -15,7 +15,7 @@ class AccountService {
 
   async editProfile(formData) {
     const res = await api.put('account', formData)
-    logger.log(res.data)
+    AppState.account = new Account(res.data)
   }
 }
 
