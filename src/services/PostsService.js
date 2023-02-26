@@ -2,7 +2,6 @@ import { AppState } from "../AppState.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 import { Post } from "../models/Post.js"
-import { Account } from "../models/Account.js"
 
 
 class PostsService {
@@ -46,6 +45,9 @@ class PostsService {
         if (!post.likeIds.includes(account.id)) {
             post.likeIds.push(account.id)
             AppState.likes++
+        } else if (post.likeIds.includes(account.id)) {
+            post.likeIds.splice(account.id)
+            AppState.likes--
         }
         const res = await api.put('/api/posts/' + postId, post)
         logger.log(res.data)
