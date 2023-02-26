@@ -10,6 +10,10 @@
         <div v-for="p in posts" class="row mb-3">
           <PostCard :post="p" />
         </div>
+        <div class="mb-3 text-center">
+          <button class="btn btn-info me-2" @click="getPreviousPage()">Previous</button>
+          <button class="btn btn-info" @click="getNextPage()">Next</button>
+        </div>
       </div>
     </div>
   </div>
@@ -39,6 +43,21 @@ export default {
     return {
       posts: computed(() => AppState.posts),
 
+      async getNextPage() {
+        try {
+          await postsService.getNextPage()
+        } catch (error) {
+          Pop.error('[CHANGING PAGE]', error)
+        }
+      },
+
+      async getPreviousPage() {
+        try {
+          await postsService.getPreviousPage()
+        } catch (error) {
+          Pop.error('[CHANGING PAGE]', error)
+        }
+      }
      
     }
   }

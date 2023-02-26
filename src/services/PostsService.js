@@ -16,6 +16,30 @@ class PostsService {
         AppState.posts.push(new Post(res.data))
         logger.log('[new post]', AppState.posts)
     }
+
+    async getNextPage() {
+        if (AppState.currentPage < AppState.totalPages) {
+            AppState.currentPage++
+        }
+        const res = await api.get(`/api/posts?page=${AppState.currentPage}`)
+        AppState.posts = res.data.posts.map(p => new Post(p))
+        AppState.totalPages = res.data.totalPages
+        AppState.nextPage = res.data.nextPage
+        AppState.previousPage = res.data.previousPage
+        logger.log('[current]', AppState.currentPage, '[total]', AppState.totalPages)
+    }
+
+    async getPreviousPage() {
+        if (AppState.currentPage > 1) {
+            AppState.currentPage--
+        }
+        const res = await api.get(`/api/posts?page=${AppState.currentPage}`)
+        AppState.posts = res.data.posts.map(p => new Post(p))
+        AppState.totalPages = res.data.totalPages
+        AppState.nextPage = res.data.nextPage
+        AppState.previousPage = res.data.previousPage
+        logger.log(res.data)
+    }
 }
 
 export const postsService = new PostsService()
