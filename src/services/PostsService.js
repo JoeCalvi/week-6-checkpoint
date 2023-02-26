@@ -2,6 +2,7 @@ import { AppState } from "../AppState.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 import { Post } from "../models/Post.js"
+import { Account } from "../models/Account.js"
 
 
 class PostsService {
@@ -36,6 +37,18 @@ class PostsService {
         AppState.totalPages = res.data.totalPages
         AppState.nextPage = res.data.nextPage
         AppState.previousPage = res.data.previousPage
+    }
+
+    async likePost(postId) {
+        let post = AppState.posts.find(post => post.id == postId)
+        let account = AppState.account
+        AppState.likes = post.likeIds.length
+        if (!post.likeIds.includes(account.id)) {
+            post.likeIds.push(account.id)
+            AppState.likes++
+        }
+        const res = await api.put('/api/posts/' + postId, post)
+        logger.log(res.data)
     }
 }
 

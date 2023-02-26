@@ -18,8 +18,8 @@
                         </div>
                         <p class="mt-3">{{ post.body }}</p>
                         <div class="text-end">
-                            {{ post.likes.length }}
-                            <i class="mdi mdi-thumb-up-outline"></i>
+                            {{ post.likeIds.length }}
+                            <i class="mdi mdi-thumb-up-outline selectable" @click="likePost(`${post.id}`)"></i>
                         </div>
                     </div>
                 </div>
@@ -31,6 +31,8 @@
 
 <script>
 import { Post } from '../models/Post.js';
+import { postsService } from '../services/PostsService.js';
+import Pop from '../utils/Pop.js';
 
 
 export default {
@@ -38,7 +40,15 @@ export default {
         post: { type: Post}
     },
     setup(){
-    return {}
+    return {
+        async likePost(postId) {
+            try {
+                await postsService.likePost(postId)
+            } catch (error) {
+                Pop.error('[LIKING POST]', error)
+            }
+        }
+    }
     }
 }
 </script>
