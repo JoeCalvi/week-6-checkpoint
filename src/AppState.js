@@ -14,5 +14,5 @@ export const AppState = reactive({
   nextPage: null,
   currentPage: 1,
   totalPages: 5,
-  likes: null
+  likes: null,
 })

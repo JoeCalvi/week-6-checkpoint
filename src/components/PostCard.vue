@@ -4,7 +4,7 @@
             <div class="row align-items-center my-2">
                 <div class="col-md-2 ps-4">
                     <router-link :to="{name: 'Profile', params: { profileId: post.creatorId} }">
-                        <img :src="post.creator.picture" alt="" class="creator-picture rounded-circle selectable">
+                        <img :src="post.creator.picture" @error="$event.target.src='https://via.placeholder.com/300'" alt="" class="creator-picture rounded-circle selectable">
                     </router-link>
                 </div>
                 <div class="col-md-10">
@@ -61,7 +61,7 @@ export default {
             }
         },
         posts: computed(() => AppState.posts),
-        account: computed(() => AppState.account)
+        account: computed(() => AppState.account),
     }
     }
 }
