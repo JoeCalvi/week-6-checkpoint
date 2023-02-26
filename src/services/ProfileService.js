@@ -18,6 +18,8 @@ class ProfileService {
         AppState.posts = res.data.posts.map(p => new Post(p))
         logger.log(AppState.posts)
     }
+
+    
 }
 
 export const profileService = new ProfileService()
