@@ -1,7 +1,12 @@
 <template>
-    <div v-if="results" class="SearchPage">
+    <div class="SearchPage">
 
-        <ProfileCard :results="results"/>
+            <ProfileCard :peopleResults="people"/>
+        
+        <div v-for="p in posts" class="row mb-3">
+          <PostCard :post="p" />
+        </div>
+       
 
     </div>
 </template>
@@ -14,7 +19,8 @@ import { AppState } from "../AppState.js";
 export default {
     setup(){
         return {
-            results: computed(() => AppState.results)
+            posts: computed(() => AppState.posts),
+            peopleResults: computed(() => AppState.peopleResults)
         }
     }
 }

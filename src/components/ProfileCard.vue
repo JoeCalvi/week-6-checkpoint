@@ -1,19 +1,19 @@
 <template>
     <div class="ProfileCard">
-        <div class="row justify-content-center my-3">
-            <div class="col-md-3" v-for="r in results">
-                <div v-if="results">
+        <div class="row justify-content-center my-3 mx-0">
+            <div class="col-3 m-0" v-for="r in peopleResults">
+                <div>
                     <div  class="card mb-2">
                         <div class="card-body text-center">
-                                <router-link :to="{name: 'Profile', params: { profileId: r._id}}">
-                                    <img :src="r.picture" class="img-fluid creator-picture rounded-circle selectable" alt="">
-                                </router-link>
-                                <div class="my-2">
-                                    <h5>{{ r.name }}</h5>
-                                    <p>{{ r.bio }}</p>
-                                </div>
+                            <router-link :to="{name: 'Profile', params: { profileId: r.id}}">
+                                <img :src="r.picture" class="img-fluid creator-picture rounded-circle selectable" alt="">
+                            </router-link>
+                            <div class="my-2">
+                                <h5>{{ r.name }}</h5>
+                                <p>{{ r.bio }}</p>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@ import { AppState } from "../AppState.js";
 export default {
     setup(){
         return {
-            results: computed(() => AppState.results)
+            peopleResults: computed(() => AppState.peopleResults)
         }
     }
 }
@@ -37,8 +37,8 @@ export default {
 <style lang="scss" scoped>
 
 .creator-picture{
-  height: 15vw;
-  width: 15vw;
+  height: 12vw;
+  width: 12vw;
   object-fit: cover;
   object-position: center;
 }

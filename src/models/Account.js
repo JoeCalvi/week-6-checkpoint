@@ -1,6 +1,6 @@
 export class Profile {
   constructor(data) {
-    this.id = data.id
+    this.id = data._id
     this.name = data.name
     this.bio = data.bio
     this.class = data.class
@@ -9,7 +9,7 @@ export class Profile {
     this.coverImg = data.coverImg
     this.github = data.github
     this.linkedin = data.linkedin
-    
+
 
   }
 }

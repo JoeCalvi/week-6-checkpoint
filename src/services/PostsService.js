@@ -12,6 +12,13 @@ class PostsService {
         logger.log(AppState.posts)
     }
 
+    async getPostsByQuery(query) {
+        const res = await api.get('/api/posts/', { params: query })
+        AppState.postResults = res.data.posts.map(p => new Post(p))
+        AppState.posts = res.data.posts.map(p => new Post(p))
+        logger.log(AppState.posts)
+    }
+
     async createPost(postData) {
         const res = await api.post('/api/posts', postData)
         AppState.posts.push(new Post(res.data))

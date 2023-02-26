@@ -5,7 +5,7 @@ export class Post {
     constructor(data) {
         this.id = data.id
         this.creator = new Profile(data.creator)
-        this.creatorId = data.creatorId
+        this.creatorId = data.creator._id
         this.createdAt = new Date(data.createdAt).toLocaleTimeString('en-US')
         this.updatedAt = new Date(data.updatedAt).toLocaleTimeString('en-US')
         this.body = data.body

@@ -40,7 +40,10 @@ import { computed } from 'vue';
 
 export default {
     props: {
-        post: { type: Post}
+        post: { 
+            type: Post,
+            required: true 
+        }
     },
     setup(){
     return {
@@ -62,6 +65,7 @@ export default {
         },
         posts: computed(() => AppState.posts),
         account: computed(() => AppState.account),
+        postResults: computed(() => AppState.postResults)
     }
     }
 }
