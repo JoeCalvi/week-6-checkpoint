@@ -17,6 +17,10 @@
                             <img :src="post.imgUrl" class="rounded img-fluid my-2" alt="">
                         </div>
                         <p class="mt-3">{{ post.body }}</p>
+                        <div class="text-end">
+                            {{ post.likes.length }}
+                            <i class="mdi mdi-thumb-up-outline"></i>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -3,23 +3,29 @@
         <div class="container-fluid">
             <div class="row mt-3">
                 <div class="col-3 d-flex justify-content-center">
-                    <img :src="profile.picture" alt="" class="creator-picture rounded-circle">
-                </div>
-                <div v-if="account.id == profile.id" class="col-md-8">
-                    <PostForm />
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-3 d-flex justify-content-start">
                     <div>
+                    <img :src="profile.picture" alt="" class="creator-picture rounded-circle">
                         <h5>{{ profile.name }}</h5>
                         <p v-if="profile.class">{{ profile.class }} <i v-if="profile.graduated" class="mdi mdi-school"></i></p>
                         <p>{{ profile.bio }}</p>
                         <span class="fs-3">
-                            <i v-if="profile.github" class="mdi mdi-github"></i>
-                            <i v-if="profile.linkedin" class="mdi mdi-linkedin"></i>
+                            <a :href="profile.github" target="_blank">
+                                <i v-if="profile.github" class="mdi mdi-github"></i>
+                            </a>
+                            <a :href="profile.linkedin" target="_blank">
+                                <i v-if="profile.linkedin" class="mdi mdi-linkedin"></i>
+                            </a>
                         </span>
                     </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="border border-dark rounded">
+                        <img :src="profile.coverImg" class="img-fluid" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-3 d-flex justify-content-start">
                 </div>
                 <div class="col-md-8">
                     <div v-for="p in posts" class="row mb-3">
@@ -38,9 +44,16 @@ import { useRoute } from 'vue-router'
 import { AppState } from '../AppState.js'
 import { profileService } from '../services/ProfileService.js';
 import Pop from '../utils/Pop.js';
+import { Profile } from '../models/Account.js';
 
 export default {
-    setup(){
+    props: {
+        profile: {
+            type: Profile,
+            required: true
+        }
+    },
+    setup(props){
         const route = useRoute();
         async function getProfileById() {
             try {
@@ -81,6 +94,12 @@ export default {
   width: 15vw;
   object-fit: cover;
   object-position: center;
+}
+
+.cover-img{
+    height: 40vh;
+    width: 100%;
+    object-position: center;
 }
 
 </style>
