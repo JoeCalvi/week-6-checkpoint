@@ -52,6 +52,11 @@ class PostsService {
         const res = await api.put('/api/posts/' + postId, post)
         logger.log(res.data)
     }
+
+    async deletePost(postId) {
+        const res = await api.delete('api/posts/' + postId)
+        logger.log(res.data)
+    }
 }
 
 export const postsService = new PostsService()

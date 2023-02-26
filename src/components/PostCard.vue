@@ -20,6 +20,7 @@
                         <div class="text-end">
                             {{ post.likeIds.length }}
                             <i class="mdi mdi-thumb-up-outline selectable" @click="likePost(`${post.id}`)"></i>
+                                <button v-if="account.id == post.creatorId" class="btn btn-danger ms-3" @click="deletePost(`${post.id}`)"><i class="mdi mdi-trash-can"></i></button>
                         </div>
                     </div>
                 </div>
@@ -30,9 +31,11 @@
 
 
 <script>
+import { AppState } from '../AppState';
 import { Post } from '../models/Post.js';
 import { postsService } from '../services/PostsService.js';
 import Pop from '../utils/Pop.js';
+import { computed } from 'vue';
 
 
 export default {
@@ -47,7 +50,18 @@ export default {
             } catch (error) {
                 Pop.error('[LIKING POST]', error)
             }
-        }
+        },
+
+        async deletePost(postId) {
+            try { if (await Pop.confirm('Are you sure you want to delete this post?')) {
+                await postsService.deletePost(postId)
+            }
+            } catch (error) {
+                Pop.error('[DELETING POST]', error)
+            }
+        },
+        posts: computed(() => AppState.posts),
+        account: computed(() => AppState.account)
     }
     }
 }
