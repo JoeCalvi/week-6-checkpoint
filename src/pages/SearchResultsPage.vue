@@ -1,6 +1,5 @@
 <template>
     <div class="SearchPage">
-
         <div class="container-fluid">
             <div class="row justify-content-center my-3">
                 <div class="col-md-10">
@@ -21,9 +20,6 @@
                 </div>
             </div>
         </div>
-        
-       
-
     </div>
 </template>
 
