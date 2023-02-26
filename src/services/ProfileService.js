@@ -21,7 +21,7 @@ class ProfileService {
 
     async getProfilesByQuery(query) {
         const res = await api.get('/api/profiles', { params: query })
-        AppState.results = res.data.map(p => new Profile(p))
+        AppState.results = res.data
         logger.log(AppState.results)
     }
 }
