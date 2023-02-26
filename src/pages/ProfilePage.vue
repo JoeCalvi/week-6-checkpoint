@@ -1,38 +1,13 @@
 <template>
     <div v-if="profile" class="ProfilePage">
         <div class="container-fluid">
-            <div class="row mt-3">
-                <div class="col-3 d-flex justify-content-center">
-                    <div>
-                    <img :src="profile.picture" alt="" class="creator-picture rounded-circle">
-                        <h5>{{ profile.name }}</h5>
-                        <p v-if="profile.class">{{ profile.class }} <i v-if="profile.graduated" class="mdi mdi-school"></i></p>
-                        <p>{{ profile.bio }}</p>
-                        <span class="fs-3">
-                            <a :href="profile.github" target="_blank">
-                                <i v-if="profile.github" class="mdi mdi-github"></i>
-                            </a>
-                            <a :href="profile.linkedin" target="_blank">
-                                <i v-if="profile.linkedin" class="mdi mdi-linkedin"></i>
-                            </a>
-                        </span>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="border border-dark rounded">
-                        <img :src="profile.coverImg" class="img-fluid" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-3 d-flex justify-content-start">
-                </div>
-                <div class="col-md-8">
-                    <div v-for="p in posts" class="row mb-3">
+            <ProfileDetails :profile="profile"/>
+                <div v-for="p in posts" class="row mb-3">
+                    <div class="col-md-12">
                         <PostCard :post="p" />
                     </div>
                 </div>
-            </div>
+            
         </div>
     </div>
 </template>
@@ -45,6 +20,8 @@ import { AppState } from '../AppState.js'
 import { profileService } from '../services/ProfileService.js';
 import Pop from '../utils/Pop.js';
 import { Profile } from '../models/Account.js';
+import ProfileDetails from '../components/ProfileDetails.vue';
+import PostCard from '../components/PostCard.vue';
 
 export default {
     props: {
@@ -53,36 +30,37 @@ export default {
             required: true
         }
     },
-    setup(props){
+    setup(props) {
         const route = useRoute();
         async function getProfileById() {
             try {
                 const profileId = route.params.profileId;
                 await profileService.getProfileById(profileId);
-                } catch (error) {
-                Pop.error('[GETTING PROFILE BY ID]', error);
-                }
             }
-        
+            catch (error) {
+                Pop.error("[GETTING PROFILE BY ID]", error);
+            }
+        }
         async function getPostsByProfileId() {
             try {
                 const profileId = route.params.profileId;
                 await profileService.getPostsByQuery({ creatorId: profileId });
-            } catch (error) {
-                Pop.error('[GETTING POSTS BY ID]', error);
+            }
+            catch (error) {
+                Pop.error("[GETTING POSTS BY ID]", error);
             }
         }
-
         onMounted(() => {
             getProfileById();
             getPostsByProfileId();
-        })
+        });
         return {
             profile: computed(() => AppState.profile),
             posts: computed(() => AppState.posts),
             account: computed(() => AppState.account)
-        }
-    }
+        };
+    },
+    components: { ProfileDetails, PostCard }
 }
 </script>
 
@@ -97,9 +75,10 @@ export default {
 }
 
 .cover-img{
-    height: 40vh;
+    height: 100vh;
     width: 100%;
     object-position: center;
+    object-fit: cover;
 }
 
 </style>
