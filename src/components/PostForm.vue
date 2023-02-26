@@ -8,7 +8,7 @@
             <div class="mb-3">
                     <label for="imgUrl" class="form-label">Add Image</label>
                     <input type="text" class="form-control" id="imgUrl" name="imgUrl" v-model="editable.imgUrl" placeholder="must be URL">
-                </div>
+            </div>
             <div class="text-end">
               <button class="btn btn-outline-info" type="submit">Submit</button>
             </div>

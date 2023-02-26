@@ -28,6 +28,12 @@
           </router-link>
         </li>
       </ul>
+      <form @submit.prevent="getProfilesByQuery(`${editable.value}`)">
+        <div class="input-group pe-3">
+          <input type="text" class="form-control" name="query" id="query" v-model="editable.query" placeholder="search..." aria-label="search">
+              <button class="btn btn-outline-secondary" type="submit"><i class="mdi mdi-magnify"></i></button>
+            </div>
+          </form>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
@@ -37,12 +43,27 @@
 <script>
 import Login from './Login.vue'
 import { AppState } from '../AppState.js';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
+import Pop from '../utils/Pop.js';
+import { profileService } from '../services/ProfileService.js';
+import { router } from '../router.js'
 
 export default {
   setup() {
+    const editable = ref({});
     return {
-      account: computed(() => AppState.account)
+      editable,
+      account: computed(() => AppState.account),
+
+      async getProfilesByQuery() {
+        try {
+          let query = editable.value
+          await profileService.getProfilesByQuery(query)
+          router.push({ name: 'Results'})
+        } catch (error) {
+          Pop.error('[GETTING PROFILES BY QUERY]', error)
+        }
+      }
     }
   },
   components: { Login },

@@ -1,6 +1,6 @@
 <template>
   <div class="about text-center">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center m-0">
       <AdCard :ads="ads"/>
       <div class="col-md-10">
         <h1>Welcome {{ account.name }}</h1>
