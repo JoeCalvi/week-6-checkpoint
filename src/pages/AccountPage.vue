@@ -4,7 +4,9 @@
       <AdCard :ads="ads"/>
       <div class="col-md-10">
         <h1>Welcome {{ account.name }}</h1>
-        <img class="rounded" :src="account.picture" alt="" />
+        <router-link :to="{name: 'Profile', params: { profileId: account.id} }">
+          <img class="rounded selectable" :src="account.picture" alt="" />
+        </router-link>
         <p>{{ account.email }}</p>
         <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Edit Account</button>
       </div>

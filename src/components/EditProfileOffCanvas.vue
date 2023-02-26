@@ -38,7 +38,7 @@
                         Graduated?
                     </label>
                 </div>
-                <button class="btn btn-info" type="submit">Save</button>
+                <button class="btn btn-info" type="submit" data-bs-dismiss="offcanvas">Save</button>
             </form>
             </div>
     </div>

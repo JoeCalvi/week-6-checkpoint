@@ -72,7 +72,7 @@ export default {
                     const profileId = route.params.profileId;
                     await profileService.nextPageByProfileId(profileId)
                 } catch (error) {
-                    Pop.error('[CHANGING PAGE BY PROFILE ID]', error)
+                    Pop.error('No more pages', error)
                 }
             },
             
@@ -81,7 +81,7 @@ export default {
                     const profileId = route.params.profileId;
                     await profileService.previousPageByProfileId(profileId)
                 } catch (error) {
-                    Pop.error('[CHANGING PAGE BY PROFILE ID]', error)
+                    Pop.error('No more pages.', error)
                 }
             }
         };
