@@ -5,14 +5,13 @@
             <ProfileDetails :profile="profile"/>
                 <div v-for="p in posts" class="row mb-3">
                     <div class="col-md-12">
-                        <div class="mb-3 text-center">
-                            <button class="btn btn-info me-2" @click="previousPageByProfileId()">Previous</button>
-                            <button class="btn btn-info" @click="nextPageByProfileId()">Next</button>
-                        </div>
                         <PostCard :post="p" />
                     </div>
                 </div>
-            
+                <div class="mb-3 text-center">
+                    <button class="btn btn-info me-2" @click="previousPageByProfileId()">Previous</button>
+                    <button class="btn btn-info" @click="nextPageByProfileId()">Next</button>
+                </div>
         </div>
     </div>
 </template>
