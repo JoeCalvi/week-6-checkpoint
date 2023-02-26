@@ -1,11 +1,27 @@
 <template>
     <div class="SearchPage">
 
-            <ProfileCard :peopleResults="people"/>
-        
-        <div v-for="p in posts" class="row mb-3">
-          <PostCard :post="p" />
+        <div class="container-fluid">
+            <div class="row justify-content-center my-3">
+                <div class="col-md-10">
+                    <h2 class="text-center">
+                        Users:
+                    </h2>
+                    <ProfileCard :peopleResults="people"/>
+                </div>
+            </div>
+            <div class="row justify-content-center my-3">
+                <div class="col-md-10 border-top border-dark pt-3">
+                    <h2 class="text-center">
+                        Posts:
+                    </h2>
+                    <div v-for="p in posts" class="row mb-3">
+                        <PostCard :post="p" />
+                    </div>
+                </div>
+            </div>
         </div>
+        
        
 
     </div>
