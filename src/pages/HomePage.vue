@@ -57,7 +57,9 @@ export default {
         } catch (error) {
           Pop.error('[CHANGING PAGE]', error)
         }
-      }
+      },
+
+      posts: computed(() => AppState.posts)
      
     }
   }
