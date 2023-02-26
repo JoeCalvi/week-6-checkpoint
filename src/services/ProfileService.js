@@ -24,6 +24,29 @@ class ProfileService {
         AppState.peopleResults = res.data.map(r => new Profile(r))
         logger.log(AppState.peopleResults)
     }
+
+    async nextPageByProfileId(profileId) {
+        if (AppState.currentPage < AppState.totalPages) {
+            AppState.currentPage++
+        }
+        const res = await api.get(`/api/posts?creatorId=${profileId}&page=${AppState.currentPage}`)
+        logger.log(res.data)
+        AppState.posts = res.data.posts.map(p => new Post(p))
+        AppState.totalPages = res.data.totalPages
+        AppState.nextPage = res.data.nextPage
+        AppState.previousPage = res.data.previousPage
+    }
+
+    async previousPageByProfileId(profileId) {
+        if (AppState.currentPage > 1) {
+            AppState.currentPage--
+        }
+        const res = await api.get(`/api/posts?creatorId=${profileId}&page=${AppState.currentPage}`)
+        AppState.posts = res.data.posts.map(p => new Post(p))
+        AppState.totalPages = res.data.totalPages
+        AppState.nextPage = res.data.nextPage
+        AppState.previousPage = res.data.previousPage
+    }
 }
 
 export const profileService = new ProfileService()

@@ -5,6 +5,10 @@
             <ProfileDetails :profile="profile"/>
                 <div v-for="p in posts" class="row mb-3">
                     <div class="col-md-12">
+                        <div class="mb-3 text-center">
+                            <button class="btn btn-info me-2" @click="previousPageByProfileId()">Previous</button>
+                            <button class="btn btn-info" @click="nextPageByProfileId()">Next</button>
+                        </div>
                         <PostCard :post="p" />
                     </div>
                 </div>
@@ -52,6 +56,8 @@ export default {
                 Pop.error("[GETTING POSTS BY ID]", error);
             }
         }
+
+        
         onMounted(() => {
             getProfileById();
             getPostsByProfileId();
@@ -59,7 +65,26 @@ export default {
         return {
             profile: computed(() => AppState.profile),
             posts: computed(() => AppState.posts),
-            account: computed(() => AppState.account)
+            account: computed(() => AppState.account),
+            ads: computed(() => AppState.ads),
+
+            async nextPageByProfileId() {
+                try {
+                    const profileId = route.params.profileId;
+                    await profileService.nextPageByProfileId(profileId)
+                } catch (error) {
+                    Pop.error('[CHANGING PAGE BY PROFILE ID]', error)
+                }
+            },
+            
+            async previousPageByProfileId() {
+                try {
+                    const profileId = route.params.profileId;
+                    await profileService.previousPageByProfileId(profileId)
+                } catch (error) {
+                    Pop.error('[CHANGING PAGE BY PROFILE ID]', error)
+                }
+            }
         };
     },
     components: { ProfileDetails, PostCard, AdCard }
