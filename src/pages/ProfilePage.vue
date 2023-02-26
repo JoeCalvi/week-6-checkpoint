@@ -1,6 +1,7 @@
 <template>
     <div v-if="profile" class="ProfilePage">
         <div class="container-fluid">
+            <AdCard :ads="ads"/>
             <ProfileDetails :profile="profile"/>
                 <div v-for="p in posts" class="row mb-3">
                     <div class="col-md-12">
@@ -22,6 +23,7 @@ import Pop from '../utils/Pop.js';
 import { Profile } from '../models/Account.js';
 import ProfileDetails from '../components/ProfileDetails.vue';
 import PostCard from '../components/PostCard.vue';
+import AdCard from '../components/AdCard.vue';
 
 export default {
     props: {
@@ -60,7 +62,7 @@ export default {
             account: computed(() => AppState.account)
         };
     },
-    components: { ProfileDetails, PostCard }
+    components: { ProfileDetails, PostCard, AdCard }
 }
 </script>
 

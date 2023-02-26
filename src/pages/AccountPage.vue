@@ -1,6 +1,7 @@
 <template>
   <div class="about text-center">
     <div class="row justify-content-center">
+      <AdCard :ads="ads"/>
       <div class="col-md-10">
         <h1>Welcome {{ account.name }}</h1>
         <img class="rounded" :src="account.picture" alt="" />
@@ -14,7 +15,8 @@
 
 <script>
 import { computed } from 'vue'
-import { AppState } from '../AppState'
+import { AppState } from '../AppState.js'
+import AdCard from '../components/AdCard.vue';
 import EditProfileOffCanvas from '../components/EditProfileOffCanvas.vue';
 export default {
     setup() {
@@ -22,7 +24,7 @@ export default {
             account: computed(() => AppState.account)
         };
     },
-    components: { EditProfileOffCanvas }
+    components: { EditProfileOffCanvas, AdCard }
 }
 </script>
 
