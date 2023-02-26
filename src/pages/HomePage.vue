@@ -1,5 +1,6 @@
 <template>
   <div class="container-fluid">
+    <AdCard :ads="ads"/>
     <div class="row justify-content-center mt-3">
       <div class="col-md-8">
         <PostForm />
@@ -29,53 +30,52 @@ import { postsService } from '../services/PostsService.js';
 import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
 import { adsService } from '../services/AdsService.js';
+import AdCard from '../components/AdCard.vue';
 
 export default {
-  setup() {
-    
-    async function getAllPosts(){
-      try {
-        await postsService.getAllPosts();
-      } catch (error) {
-        Pop.error('[GETTING ALL POSTS]', error);
-      }
-    } 
-
-    async function getAds() {
-                try {
-                    await adsService.getAds();
-                } catch (error) {
-                    Pop.error('[GETTING ADS]');
-                }
+    setup() {
+        async function getAllPosts() {
+            try {
+                await postsService.getAllPosts();
             }
-
-    onMounted(() => {
-      getAllPosts();
-      getAds()
-    })
-
-    return {
-      posts: computed(() => AppState.posts),
-      ads: computed(() => AppState.ads),
-
-      async getNextPage() {
-        try {
-          await postsService.getNextPage();
-        } catch (error) {
-          Pop.error('[CHANGING PAGE]', error);
+            catch (error) {
+                Pop.error("[GETTING ALL POSTS]", error);
+            }
         }
-      },
-
-      async getPreviousPage() {
-        try {
-          await postsService.getPreviousPage();
-        } catch (error) {
-          Pop.error('[CHANGING PAGE]', error);
+        async function getAds() {
+            try {
+                await adsService.getAds();
+            }
+            catch (error) {
+                Pop.error("[GETTING ADS]");
+            }
         }
-      },
-
-    }
-  }
+        onMounted(() => {
+            getAllPosts();
+            getAds();
+        });
+        return {
+            posts: computed(() => AppState.posts),
+            ads: computed(() => AppState.ads),
+            async getNextPage() {
+                try {
+                    await postsService.getNextPage();
+                }
+                catch (error) {
+                    Pop.error("[CHANGING PAGE]", error);
+                }
+            },
+            async getPreviousPage() {
+                try {
+                    await postsService.getPreviousPage();
+                }
+                catch (error) {
+                    Pop.error("[CHANGING PAGE]", error);
+                }
+            },
+        };
+    },
+    components: { AdCard }
 }
 </script>
 
@@ -87,4 +87,5 @@ export default {
   object-fit: cover;
   object-position: center;
 }
+
 </style>
