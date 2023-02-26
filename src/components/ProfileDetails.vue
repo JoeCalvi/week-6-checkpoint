@@ -1,6 +1,6 @@
 <template>
     <div class="ProfileDetails">
-        <div class="row mt-3">
+        <div class="row my-3">
                 <div class="col-3 d-flex justify-content-center">
                     <div>
                     <img :src="profile.picture" alt="" class="creator-picture rounded-circle">

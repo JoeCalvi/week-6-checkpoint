@@ -28,43 +28,52 @@ import { onMounted, computed } from 'vue';
 import { postsService } from '../services/PostsService.js';
 import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
-import { useRoute } from 'vue-router';
+import { adsService } from '../services/AdsService.js';
 
 export default {
   setup() {
     
     async function getAllPosts(){
       try {
-        await postsService.getAllPosts()
+        await postsService.getAllPosts();
       } catch (error) {
-        Pop.error('[GETTING ALL POSTS]', error)
+        Pop.error('[GETTING ALL POSTS]', error);
       }
     } 
+
+    async function getAds() {
+                try {
+                    await adsService.getAds();
+                } catch (error) {
+                    Pop.error('[GETTING ADS]');
+                }
+            }
+
     onMounted(() => {
-      getAllPosts()
+      getAllPosts();
+      getAds()
     })
 
     return {
       posts: computed(() => AppState.posts),
+      ads: computed(() => AppState.ads),
 
       async getNextPage() {
         try {
-          await postsService.getNextPage()
+          await postsService.getNextPage();
         } catch (error) {
-          Pop.error('[CHANGING PAGE]', error)
+          Pop.error('[CHANGING PAGE]', error);
         }
       },
 
       async getPreviousPage() {
         try {
-          await postsService.getPreviousPage()
+          await postsService.getPreviousPage();
         } catch (error) {
-          Pop.error('[CHANGING PAGE]', error)
+          Pop.error('[CHANGING PAGE]', error);
         }
       },
 
-      posts: computed(() => AppState.posts)
-     
     }
   }
 }

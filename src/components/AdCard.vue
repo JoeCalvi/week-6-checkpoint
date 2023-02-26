@@ -7,9 +7,14 @@
 
 
 <script>
+import { adsService } from '../services/AdsService.js';
+import Pop from '../utils/Pop.js';
+
 export default {
     setup(){
-        return {}
+        return {
+            
+        }
     }
 }
 </script>
