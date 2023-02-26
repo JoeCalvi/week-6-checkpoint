@@ -5,6 +5,10 @@
                 <label for="body" class="form-label">New Post:</label>
                 <textarea v-model="editable.body" name="body" id="body" class="form-control" rows="3"></textarea>
             </div>
+            <div class="mb-3">
+                    <label for="imgUrl" class="form-label">Add Image</label>
+                    <input type="text" class="form-control" id="imgUrl" name="imgUrl" v-model="editable.imgUrl" placeholder="must be URL">
+                </div>
             <div class="text-end">
               <button class="btn btn-outline-info" type="submit">Submit</button>
             </div>

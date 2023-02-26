@@ -7,6 +7,10 @@
     </div>
     <div class="row justify-content-center mt-3">
       <div class="col-md-8">
+        <div class="mb-3 text-center">
+          <button class="btn btn-info me-2" @click="getPreviousPage()">Previous</button>
+          <button class="btn btn-info" @click="getNextPage()">Next</button>
+        </div>
         <div v-for="p in posts" class="row mb-3">
           <PostCard :post="p" />
         </div>
