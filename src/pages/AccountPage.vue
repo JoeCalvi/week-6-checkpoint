@@ -1,20 +1,28 @@
 <template>
   <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
-    <p>{{ account.email }}</p>
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <h1>Welcome {{ account.name }}</h1>
+        <img class="rounded" :src="account.picture" alt="" />
+        <p>{{ account.email }}</p>
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Toggle bottom offcanvas</button>
+        <EditProfileOffCanvas />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { computed } from 'vue'
 import { AppState } from '../AppState'
+import EditProfileOffCanvas from '../components/EditProfileOffCanvas.vue';
 export default {
-  setup() {
-    return {
-      account: computed(() => AppState.account)
-    }
-  }
+    setup() {
+        return {
+            account: computed(() => AppState.account)
+        };
+    },
+    components: { EditProfileOffCanvas }
 }
 </script>
 
