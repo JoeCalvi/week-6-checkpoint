@@ -5,7 +5,7 @@
                     <div>
                     <img :src="profile.picture" alt="" class="creator-picture rounded-circle">
                         <h5>{{ profile.name }}</h5>
-                        <p v-if="profile.class">{{ profile.class }} <i v-if="profile.graduated" class="mdi mdi-school"></i></p>
+                        <p v-if="profile.class">{{ profile.class }} </p> <i v-if="profile.graduated == true" class="mdi mdi-school"></i>
                         <p>{{ profile.bio }}</p>
                         <span class="fs-3">
                             <a :href="profile.github" target="_blank">
